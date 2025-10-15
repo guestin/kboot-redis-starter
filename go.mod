@@ -1,10 +1,11 @@
-module github.com/guestin/kboot/redis
+module github.com/guestin/kboot-redis-starter
 
 go 1.25
 
 require (
 	github.com/guestin/kboot v0.1.0-beta.1
 	github.com/guestin/log v1.0.1
+	github.com/ooopSnake/assert.go v1.0.1
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.14.0
 )
@@ -20,7 +21,6 @@ require (
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/guestin/mob v1.1.1 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
-	github.com/ooopSnake/assert.go v1.0.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/sagikazarmark/locafero v0.12.0 // indirect
 	github.com/spf13/afero v1.15.0 // indirect
