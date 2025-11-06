@@ -1,6 +1,8 @@
 package redis
 
 import (
+	"time"
+
 	"github.com/guestin/kboot"
 	"github.com/guestin/log"
 	"github.com/pkg/errors"
@@ -35,9 +37,16 @@ func _init(unit kboot.Unit) (kboot.ExecFunc, error) {
 		_cfg.KeyPrefix = DefaultKeyPrefix
 	}
 	option := &goRedis.UniversalOptions{
-		Addrs:    _cfg.Address,
-		DB:       _cfg.DbIdx,
-		Password: _cfg.Password,
+		Addrs:           _cfg.Address,
+		DB:              _cfg.DbIdx,
+		Password:        _cfg.Password,
+		PoolSize:        _cfg.PoolSize,
+		PoolTimeout:     time.Duration(_cfg.PoolTimeoutSec) * time.Second,
+		MinIdleConns:    _cfg.MinIdleConns,
+		MaxIdleConns:    _cfg.MaxIdleConns,
+		MaxActiveConns:  _cfg.MaxActiveConns,
+		ConnMaxIdleTime: time.Duration(_cfg.ConnMaxIdleTimeSec) * time.Second,
+		ConnMaxLifetime: time.Duration(_cfg.ConnMaxLifetimeSec) * time.Second,
 	}
 	cli := goRedis.NewUniversalClient(option)
 	if err = cli.Ping(unit.GetContext()).Err(); err != nil {
